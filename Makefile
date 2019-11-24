@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phil/a57driver/indi-3rdparty/examples/generic-ccd
+CMAKE_SOURCE_DIR = /home/phil/a57driver/indi-3rdparty/indi-sonya57
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phil/a57driver/indi-3rdparty/examples/generic-ccd
+CMAKE_BINARY_DIR = /home/phil/a57driver/indi-3rdparty/indi-sonya57
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles /home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles /home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -157,17 +157,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sony_a57
+# Target rules for targets named indi_sony_a57
 
 # Build rule for target.
-sony_a57: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sony_a57
-.PHONY : sony_a57
+indi_sony_a57: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 indi_sony_a57
+.PHONY : indi_sony_a57
 
 # fast build rule for target.
-sony_a57/fast:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/build
-.PHONY : sony_a57/fast
+indi_sony_a57/fast:
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/build
+.PHONY : indi_sony_a57/fast
 
 jpeg.o: jpeg.cpp.o
 
@@ -175,7 +175,7 @@ jpeg.o: jpeg.cpp.o
 
 # target to build an object file
 jpeg.cpp.o:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/jpeg.cpp.o
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/jpeg.cpp.o
 .PHONY : jpeg.cpp.o
 
 jpeg.i: jpeg.cpp.i
@@ -184,7 +184,7 @@ jpeg.i: jpeg.cpp.i
 
 # target to preprocess a source file
 jpeg.cpp.i:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/jpeg.cpp.i
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/jpeg.cpp.i
 .PHONY : jpeg.cpp.i
 
 jpeg.s: jpeg.cpp.s
@@ -193,7 +193,7 @@ jpeg.s: jpeg.cpp.s
 
 # target to generate assembly for a file
 jpeg.cpp.s:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/jpeg.cpp.s
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/jpeg.cpp.s
 .PHONY : jpeg.cpp.s
 
 sony_a57.o: sony_a57.cpp.o
@@ -202,7 +202,7 @@ sony_a57.o: sony_a57.cpp.o
 
 # target to build an object file
 sony_a57.cpp.o:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/sony_a57.cpp.o
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/sony_a57.cpp.o
 .PHONY : sony_a57.cpp.o
 
 sony_a57.i: sony_a57.cpp.i
@@ -211,7 +211,7 @@ sony_a57.i: sony_a57.cpp.i
 
 # target to preprocess a source file
 sony_a57.cpp.i:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/sony_a57.cpp.i
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/sony_a57.cpp.i
 .PHONY : sony_a57.cpp.i
 
 sony_a57.s: sony_a57.cpp.s
@@ -220,7 +220,7 @@ sony_a57.s: sony_a57.cpp.s
 
 # target to generate assembly for a file
 sony_a57.cpp.s:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/sony_a57.cpp.s
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/sony_a57.cpp.s
 .PHONY : sony_a57.cpp.s
 
 # Help Target
@@ -231,7 +231,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... edit_cache"
-	@echo "... sony_a57"
+	@echo "... indi_sony_a57"
 	@echo "... rebuild_cache"
 	@echo "... list_install_components"
 	@echo "... install/local"

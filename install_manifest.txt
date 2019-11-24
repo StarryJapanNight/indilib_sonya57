@@ -1,0 +1,2 @@
+/usr/local/bin/indi_sony_a57
+/usr/share/indi/indi_sony_a57.xml

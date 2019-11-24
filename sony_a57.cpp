@@ -66,7 +66,6 @@ void ISInit()
         cameraCount            = 1;
         struct usb_device *dev = nullptr;
         cameras[0]             = new SonyA57(dev, deviceTypes[0].name);
-        //cameras[1]             = new SonyA57(dev, deviceTypes[1].name);
 
         atexit(cleanup);
         isInit = true;
@@ -101,6 +100,7 @@ void ISNewSwitch(const char *dev, const char *name, ISState *states, char *names
                 break;
         }
     }
+
 }
 
 void ISNewText(const char *dev, const char *name, char *texts[], char *names[], int num)
@@ -202,9 +202,12 @@ bool SonyA57::updateProperties()
         setupParams();
 
         timerID = SetTimer(POLLMS);
+
+
     }
     else
     {
+
         rmTimer(timerID);
     }
 
@@ -213,43 +216,17 @@ bool SonyA57::updateProperties()
 
 bool SonyA57::Connect()
 {
-    LOG_INFO("Attempting to find the Generic CCD...");
 
-    /**********************************************************
-   *
-   *
-   *
-   *  IMPORRANT: Put here your CCD Connect function
-   *  If you encameraCounter an error, send the client a message
-   *  e.g.
-   *  LOG_INFO( "Error, unable to connect due to ...");
-   *  return false;
-   *
-   *
-   **********************************************************/
-
-    /* Success! */
-    LOG_INFO("CCD is online. Retrieving basic data.");
+    LOG_INFO("CCD is online.");
 
     return true;
 }
 
 bool SonyA57::Disconnect()
 {
-    /**********************************************************
-   *
-   *
-   *
-   *  IMPORRANT: Put here your CCD disonnect function
-   *  If you encameraCounter an error, send the client a message
-   *  e.g.
-   *  LOG_INFO( "Error, unable to disconnect due to ...");
-   *  return false;
-   *
-   *
-   **********************************************************/
 
     LOG_INFO("CCD is offline.");
+
     return true;
 }
 
@@ -259,57 +236,26 @@ bool SonyA57::setupParams()
     int bit_depth = 8;
     int x_1, y_1, x_2, y_2;
 
-    /**********************************************************
-   *
-   *
-   *
-   *  IMPORRANT: Get basic CCD parameters here such as
-   *  + Pixel Size X
-   *  + Pixel Size Y
-   *  + Bit Depth?
-   *  + X, Y, W, H of frame
-   *  + Temperature
-   *  + ...etc
-   *
-   *
-   *
-   **********************************************************/
 
-    ///////////////////////////
-    // 1. Get Pixel size
-    ///////////////////////////
-    // Actucal CALL to CCD to get pixel size here
+    // Get Pixel size
+
     x_pixel_size = 4.82;
     y_pixel_size = 4.82;
 
-    ///////////////////////////
-    // 2. Get Frame
-    ///////////////////////////
-
-    // Actucal CALL to CCD to get frame information here
+    // Get Frame
     x_1 = y_1 = 0;
     x_2       = 4912;
     y_2       = 3264;
 
-    ///////////////////////////
-    // 3. Get temperature
-    ///////////////////////////
-    // Setting sample temperature -- MAKE CALL TO API FUNCTION TO GET TEMPERATURE IN REAL DRIVER
+    // Get temperature
     TemperatureN[0].value = 25.0;
     LOGF_INFO("The CCD Temperature is %f", TemperatureN[0].value);
     IDSetNumber(&TemperatureNP, nullptr);
 
-    ///////////////////////////
-    // 4. Get temperature
-    ///////////////////////////
+    // Set CCD parameters
     SetCCDParams(x_2 - x_1, y_2 - y_1, bit_depth, x_pixel_size, y_pixel_size);
 
-    // Now we usually do the following in the hardware
-    // Set Frame to LIGHT or NORMAL
-    // Set Binning to 1x1
-    /* Default frame type is NORMAL */
-
-    // Let's calculate required buffer
+    // Calculate required buffer
     int nbuf;
     nbuf = PrimaryCCD.getXRes() * PrimaryCCD.getYRes() * PrimaryCCD.getBPP() / 8; //  this is pixel cameraCount
     nbuf += 512;                                                                  //  leave a little extra at the end
@@ -320,6 +266,8 @@ bool SonyA57::setupParams()
 
 bool SonyA57::StartExposure(float duration)
 {
+
+    // Minimum exposure = 1 second
     minDuration = 1;
     if (duration < minDuration)
     {
@@ -329,31 +277,23 @@ bool SonyA57::StartExposure(float duration)
         duration = minDuration;
     }
 
-
-		
-    /*------------------ Opening the Serial port ------------------*/
-
-    /* Change /dev/ttyUSB0 to the one corresponding to your system */
-
-    camerafd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY );	        /* ttyUSB0 is the FT232 based USB2SERIAL Converter   */
-                            /* O_RDWR Read/Write access to serial port           */
-                            /* O_NOCTTY - No terminal will control the process   */
-                            /* Blocking Mode  */                       
-                            
+    // Open the Serial port
+    // O_RDWR Read/Write access to serial port   
+    // O_NOCTTY - No terminal will control the process   
+    // ttyUSB0 is the FT232 based USB2SERIAL Converter  
+    camerafd = open("/dev/ttyUSB0",O_RDWR | O_NOCTTY );	        
+                                                           
     if(camerafd == -1) {
-         printf("\n    Error! in Opening ttyUSB0  ");
-    }						/* Error Checking */
+        DEBUG(INDI::Logger::DBG_ERROR,"Cant open FTDI serial port (ttyUSB0)");
+    }					
     else
     {
-            printf("\n    ttyUSB0 Opened Successfully \n");
-
+        DEBUG(INDI::Logger::DBG_SESSION,"FTDI serial port opened (ttyUSB0)");
     }
-    /*--------- Controlling the RTS pins  of Serial Port --------*/
-
-    int RTS_flag;
-    RTS_flag = TIOCM_RTS;
 
     // Open shutter
+    int RTS_flag;
+    RTS_flag = TIOCM_RTS;
     ioctl(camerafd,TIOCMBIS,&RTS_flag);
                     
     PrimaryCCD.setExposureDuration(duration);
@@ -369,26 +309,14 @@ bool SonyA57::StartExposure(float duration)
 
 bool SonyA57::AbortExposure()
 {
-    /**********************************************************
-   *
-   *
-   *
-   *  IMPORRANT: Put here your CCD abort exposure here
-   *  If there is an error, report it back to client
-   *  e.g.
-   *  LOG_INFO( "Error, unable to abort exposure due to ...");
-   *  return false;
-   *
-   *
-   **********************************************************/
-	int RTS_flag;
-   
-    RTS_flag = TIOCM_RTS;	/* Modem Constant for RTS pin */
 
- 
-    ioctl(camerafd,TIOCMBIC,&RTS_flag); 		 /* fd -file descriptor pointing to the opened Serial port */
+    // Close shutter
+	int RTS_flag;   
+    RTS_flag = TIOCM_RTS;
+    ioctl(camerafd,TIOCMBIC,&RTS_flag); 	
     
-    close(camerafd); /* Close the Opened Serial Port */
+    // Close the serial port
+    close(camerafd);
 
     InExposure = false;
     return true;
@@ -404,41 +332,12 @@ bool SonyA57::UpdateCCDFrameType(INDI::CCDChip::CCD_FRAME fType)
     switch (imageFrameType)
     {
         case INDI::CCDChip::BIAS_FRAME:
-        case INDI::CCDChip::DARK_FRAME:
-            /**********************************************************
-     *
-     *
-     *
-     *  IMPORRANT: Put here your CCD Frame type here
-     *  BIAS and DARK are taken with shutter closed, so _usually_
-     *  most CCD this is a call to let the CCD know next exposure shutter
-     *  must be closed. Customize as appropiate for the hardware
-     *  If there is an error, report it back to client
-     *  e.g.
-     *  LOG_INFO( "Error, unable to set frame type to ...");
-     *  return false;
-     *
-     *
-     **********************************************************/
             break;
-
+        case INDI::CCDChip::DARK_FRAME:
+            break;
         case INDI::CCDChip::LIGHT_FRAME:
+            break;
         case INDI::CCDChip::FLAT_FRAME:
-            /**********************************************************
-     *
-     *
-     *
-     *  IMPORRANT: Put here your CCD Frame type here
-     *  LIGHT and FLAT are taken with shutter open, so _usually_
-     *  most CCD this is a call to let the CCD know next exposure shutter
-     *  must be open. Customize as appropiate for the hardware
-     *  If there is an error, report it back to client
-     *  e.g.
-     *  LOG_INFO( "Error, unable to set frame type to ...");
-     *  return false;
-     *
-     *
-     **********************************************************/
             break;
     }
 
@@ -466,23 +365,6 @@ bool SonyA57::UpdateCCDFrame(int x, int y, int w, int h)
         LOGF_INFO("Error: invalid height request %d", h);
         return false;
     }
-
-    /**********************************************************
-   *
-   *
-   *
-   *  IMPORRANT: Put here your CCD Frame dimension call
-   *  The values calculated above are BINNED width and height
-   *  which is what most CCD APIs require, but in case your
-   *  CCD API implementation is different, don't forget to change
-   *  the above calculations.
-   *  If there is an error, report it back to client
-   *  e.g.
-   *  LOG_INFO( "Error, unable to set frame to ...");
-   *  return false;
-   *
-   *
-   **********************************************************/
 
     // Set UNBINNED coords
     PrimaryCCD.setFrame(x_1, y_1, w, h);
@@ -512,10 +394,6 @@ float SonyA57::CalcTimeLeft()
     return timeleft;
 }
 
-
-
-/* Downloads the image from the CCD.
- N.B. No processing is done on the image */
 int SonyA57::grabImage()
 {
     uint8_t *image = PrimaryCCD.getFrameBuffer();
@@ -588,12 +466,11 @@ int SonyA57::grabImage()
                 // Most recent file
                 highest_fileNum = fileNum;              
                 selected_path = p.path();
-
                 
             }
         }
 
-        DEBUG(INDI::Logger::DBG_SESSION,(std::string("Reading: ")+selected_path).c_str());
+        DEBUGF(INDI::Logger::DBG_SESSION,"Reading: %g",selected_path);
 
         // Load jpeg using libjpg
         Image img(selected_path);
@@ -658,8 +535,6 @@ void SonyA57::TimerHit()
 
                     }
  
-
-
                     PrimaryCCD.setExposureLeft(0);
                     InExposure = false;
         

@@ -3,7 +3,7 @@
 <devGroup group="CCDs">
         <device label="Sony A57" mdpd="true">
                 <driver name="Sony A57 CCD">indi_sony_a57</driver>
-                <version>1.0</version>
+                <version>@GENERIC_VERSION_MAJOR@.@GENERIC_VERSION_MINOR@</version>
 	</device>
 </devGroup>
 </driversList>

@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/jpeg.cpp" "/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/sony_a57.dir/jpeg.cpp.o"
-  "/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/sony_a57.cpp" "/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/sony_a57.dir/sony_a57.cpp.o"
+  "/home/phil/a57driver/indi-3rdparty/indi-sonya57/jpeg.cpp" "/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/indi_sony_a57.dir/jpeg.cpp.o"
+  "/home/phil/a57driver/indi-3rdparty/indi-sonya57/sony_a57.cpp" "/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/indi_sony_a57.dir/sony_a57.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

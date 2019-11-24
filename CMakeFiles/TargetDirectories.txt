@@ -1,7 +1,7 @@
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/install/strip.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/edit_cache.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/sony_a57.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/rebuild_cache.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/list_install_components.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/install/local.dir
-/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles/install.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/install/strip.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/edit_cache.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/indi_sony_a57.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/rebuild_cache.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/list_install_components.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/install/local.dir
+/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles/install.dir

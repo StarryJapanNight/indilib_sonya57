@@ -54,45 +54,45 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phil/a57driver/indi-3rdparty/examples/generic-ccd
+CMAKE_SOURCE_DIR = /home/phil/a57driver/indi-3rdparty/indi-sonya57
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phil/a57driver/indi-3rdparty/examples/generic-ccd
+CMAKE_BINARY_DIR = /home/phil/a57driver/indi-3rdparty/indi-sonya57
 
 #=============================================================================
-# Target rules for target CMakeFiles/sony_a57.dir
+# Target rules for target CMakeFiles/indi_sony_a57.dir
 
 # All Build rule for target.
-CMakeFiles/sony_a57.dir/all:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/depend
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles --progress-num=1,2,3 "Built target sony_a57"
-.PHONY : CMakeFiles/sony_a57.dir/all
+CMakeFiles/indi_sony_a57.dir/all:
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/depend
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles --progress-num=1,2,3 "Built target indi_sony_a57"
+.PHONY : CMakeFiles/indi_sony_a57.dir/all
 
 # Include target in all.
-all: CMakeFiles/sony_a57.dir/all
+all: CMakeFiles/indi_sony_a57.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/sony_a57.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sony_a57.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/examples/generic-ccd/CMakeFiles 0
-.PHONY : CMakeFiles/sony_a57.dir/rule
+CMakeFiles/indi_sony_a57.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/indi_sony_a57.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phil/a57driver/indi-3rdparty/indi-sonya57/CMakeFiles 0
+.PHONY : CMakeFiles/indi_sony_a57.dir/rule
 
 # Convenience name for target.
-sony_a57: CMakeFiles/sony_a57.dir/rule
+indi_sony_a57: CMakeFiles/indi_sony_a57.dir/rule
 
-.PHONY : sony_a57
-
-# clean rule for target.
-CMakeFiles/sony_a57.dir/clean:
-	$(MAKE) -f CMakeFiles/sony_a57.dir/build.make CMakeFiles/sony_a57.dir/clean
-.PHONY : CMakeFiles/sony_a57.dir/clean
+.PHONY : indi_sony_a57
 
 # clean rule for target.
-clean: CMakeFiles/sony_a57.dir/clean
+CMakeFiles/indi_sony_a57.dir/clean:
+	$(MAKE) -f CMakeFiles/indi_sony_a57.dir/build.make CMakeFiles/indi_sony_a57.dir/clean
+.PHONY : CMakeFiles/indi_sony_a57.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/indi_sony_a57.dir/clean
 
 .PHONY : clean
 
